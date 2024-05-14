@@ -23,7 +23,7 @@ const Navbar = () => {
         <Flex justify="between">
           <Flex align="center" gap="3">
             <Link href="/">
-              <AiFillBug />
+              <AiFillBug className=" w-6 h-6" />
             </Link>
             <NavLinks />
           </Flex>
@@ -82,7 +82,7 @@ const NavLinks = () => {
           <Link
             className={classNames({
               "nav-links": true,
-              "!text-zinc-900": link.herf === currentPath,
+              "!text-white": link.herf === currentPath,
             })}
             href={link.herf}
           >

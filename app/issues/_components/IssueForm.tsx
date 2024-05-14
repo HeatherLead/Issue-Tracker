@@ -1,5 +1,5 @@
 "use client";
-import { TextField, Button, Callout, Text } from "@radix-ui/themes";
+import { TextField, Button, Callout, Text, Theme } from "@radix-ui/themes";
 import React, { useState } from "react";
 import "easymde/dist/easymde.min.css";
 import { useForm, Controller } from "react-hook-form";
@@ -58,14 +58,16 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
           {...register("title")}
         ></TextField.Root>
         <ErrorMessage>{errors.title?.message}</ErrorMessage>
-        <Controller
-          defaultValue={issue?.description}
-          name="description"
-          control={control}
-          render={({ field }) => (
-            <SimpleMDE placeholder="Description…" {...field} />
-          )}
-        />
+        <Theme className=" rounded-md" appearance="light">
+          <Controller
+            defaultValue={issue?.description}
+            name="description"
+            control={control}
+            render={({ field }) => (
+              <SimpleMDE placeholder="Description…" {...field} />
+            )}
+          />
+        </Theme>
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
 
         <Button disabled={isSubmiting}>

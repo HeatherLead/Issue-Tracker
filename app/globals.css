@@ -2,15 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-}
-
-@media (prefers-color-scheme: dark) {
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
+  background-color: black;
 }
 
 @layer utilities {
@@ -21,6 +14,6 @@ body {
 
 @layer utilities {
   .nav-links {
-    @apply text-zinc-500 hover:text-black transition-colors;
+    @apply text-zinc-500 hover:text-white transition-colors;
   }
 }
