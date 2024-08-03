@@ -3,7 +3,6 @@ import prisma from "@/prisma/client";
 import { issueSchema } from "@/app/validationSchema";
 import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
-import { Status } from "@prisma/client/wasm";
 
 export async function POST(request: NextRequest) {
   const session = await getServerSession(authOptions);
