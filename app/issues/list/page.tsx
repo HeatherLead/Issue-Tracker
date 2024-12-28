@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Pagination from "@/app/components/Pagination";
 import prisma from "@/prisma/client";
 import { Status } from "@prisma/client/wasm";
@@ -6,10 +7,11 @@ import IssueTable, { columnNames, IssueQuery } from "./IssueTable";
 import { Flex } from "@radix-ui/themes";
 import { Metadata } from "next";
 
-interface props {
+interface Props {
   searchParams: IssueQuery;
 }
-const page = async ({ searchParams }: props) => {
+
+const Page = async ({ searchParams }: Props) => {
   const statuses = Object.values(Status);
   const status = statuses.includes(searchParams.status)
     ? searchParams.status
@@ -37,7 +39,6 @@ const page = async ({ searchParams }: props) => {
     <Flex direction="column" gap="5">
       <IssueActions />
       <IssueTable searchParams={searchParams} issues={issues} />
-
       <Pagination
         itemCount={issueCount}
         pageSize={pageSize}
@@ -47,9 +48,15 @@ const page = async ({ searchParams }: props) => {
   );
 };
 
-export default page;
+const SuspenseWrapper = (props: Props) => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Page {...props} />
+  </Suspense>
+);
+
+export default SuspenseWrapper;
 
 export const metadata: Metadata = {
   title: "Issue Tracker - Issues",
-  description: "View All the Listed Issues of project.",
+  description: "View all the listed issues of the project.",
 };
